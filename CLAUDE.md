@@ -122,11 +122,12 @@ The project includes `audio_folder_action.applescript` for automated processing 
 - **Same-Folder Output**: Creates markdown files in the Recognize folder alongside audio files
 
 ### Apple Script Architecture (`audio_folder_action.applescript`)
-- **`adding folder items to`** (line 1) - Main folder action handler with queue management
-- **`isAudioFile()`** (line 61) - File extension validation function
-- **Queue Processing** (lines 32-44) - Checks for existing transcription processes
-- **Smart Terminal Management** (lines 46-56) - Single Terminal window for batch processing
-- **Enhanced Notifications** (lines 27, 54) - Progress and queue status updates
+- **`adding folder items to`** (line 6) - Smart folder action handler with stabilization logic
+- **`waitForFileStabilization()`** (line 74) - Waits for files to stop being added (2s delays, max 10s)
+- **`countAudioFilesInFolder()`** (line 54) - Counts audio files in target folder
+- **`launchTranscriptionProcess()`** (line 108) - Launches single Terminal process after stabilization
+- **`isAudioFile()`** (line 145) - File extension validation function
+- **Property State Management** (lines 1-4) - Prevents multiple simultaneous folder actions
 
 ## New UX Improvements
 
@@ -144,6 +145,21 @@ The project includes `audio_folder_action.applescript` for automated processing 
 
 ### Intelligent File Management
 - **Smart Filenames**: Automatic conflict resolution with timestamps when needed
-- **Queue Management**: Single Terminal processes all files sequentially
-- **Process Detection**: Prevents multiple Terminal windows from interfering
+- **Stabilization Logic**: Waits 2-10 seconds for file additions to complete before processing
+- **Single Process Guarantee**: Property-based state management prevents multiple Terminal windows
 - **Preview Integration**: Quick text preview in completion notifications
+
+## Apple Script Stabilization Algorithm
+
+### Problem Solved
+Prevents multiple Terminal windows when batch-adding files by implementing a "wait and stabilize" approach.
+
+### Algorithm:
+1. **First file triggers** folder action
+2. **Set waiting flag** to block subsequent triggers
+3. **Count current audio files** in folder
+4. **Wait 2 seconds** and recount files
+5. **If count unchanged** = files stabilized, launch processing
+6. **If count changed** = more files being added, repeat step 4
+7. **Maximum wait time** = 10 seconds (5 cycles)
+8. **Launch single Terminal** process for all files
