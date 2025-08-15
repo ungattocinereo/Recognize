@@ -122,7 +122,28 @@ The project includes `audio_folder_action.applescript` for automated processing 
 - **Same-Folder Output**: Creates markdown files in the Recognize folder alongside audio files
 
 ### Apple Script Architecture (`audio_folder_action.applescript`)
-- **`adding folder items to`** (line 1) - Main folder action handler
-- **`isAudioFile()`** (line 35) - File extension validation function
-- **Terminal Integration** (lines 23-26) - Launches Terminal with Python environment
-- **Notification System** (line 13) - macOS notification display
+- **`adding folder items to`** (line 1) - Main folder action handler with queue management
+- **`isAudioFile()`** (line 61) - File extension validation function
+- **Queue Processing** (lines 32-44) - Checks for existing transcription processes
+- **Smart Terminal Management** (lines 46-56) - Single Terminal window for batch processing
+- **Enhanced Notifications** (lines 27, 54) - Progress and queue status updates
+
+## New UX Improvements
+
+### Enhanced Progress Tracking
+- **Real-time Progress Bar**: Visual tqdm progress indicator with percentages
+- **Time Estimation**: Pre-processing time estimates based on file size and model
+- **Session Statistics**: Total processing time, file count, and word count estimates
+- **Processing Feedback**: Clear status updates for each file in batch
+
+### Smart Notification System
+- **Start Notifications**: Alerts when processing begins with time estimates
+- **Completion Alerts**: Per-file completion with text preview (first 50 characters)
+- **Batch Summary**: Final notification for multi-file processing sessions
+- **Error Notifications**: Clear error messages with actionable guidance
+
+### Intelligent File Management
+- **Smart Filenames**: Automatic conflict resolution with timestamps when needed
+- **Queue Management**: Single Terminal processes all files sequentially
+- **Process Detection**: Prevents multiple Terminal windows from interfering
+- **Preview Integration**: Quick text preview in completion notifications

@@ -8,8 +8,10 @@ Advanced automatic speech recognition system using OpenAI Whisper with automated
 - **Automated Processing**: Drop-and-go functionality with macOS Folder Actions
 - **Multi-format Support**: MP3, WAV, M4A, FLAC, OGG, WMA, AAC
 - **Intelligent Model Selection**: Configurable Whisper models from tiny to large-v3-turbo
-- **Batch Processing**: Handle multiple audio files simultaneously
-- **Smart File Management**: Automatic duplicate detection and skipping
+- **Enhanced Progress Tracking**: Real-time progress bars with time estimates
+- **Smart Notifications**: macOS alerts for start, completion, and errors
+- **Queue Management**: Single Terminal processes all files sequentially
+- **Intelligent File Management**: Smart filename conflict resolution
 
 ## 🏗️ Project Architecture
 
@@ -83,8 +85,10 @@ python audio_transcriber.py --list-models
 
 1. Ensure Folder Action is set up for `~/Desktop/Recognize`
 2. Drop audio files into the Recognize folder
-3. Watch Terminal window automatically open and process files
-4. Find transcription files in the same folder
+3. Receive notification about queue status and time estimates
+4. Watch single Terminal window process files sequentially with progress bars
+5. Get completion notifications with text previews
+6. Find transcription files in the same folder
 
 ## 📄 Output Files
 
