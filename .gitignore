@@ -1,0 +1,62 @@
+# Python virtual environment
+bin/
+include/
+lib/
+share/
+pyvenv.cfg
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Whisper model cache
+.cache/
+
+# Audio files (optional - uncomment if you don't want to track audio files)
+# *.mp3
+# *.wav
+# *.m4a
+# *.flac
+# *.ogg
+# *.wma
+# *.aac
+
+# Generated transcription files (optional - uncomment if you don't want to track them)
+# *.md
+# !README.md
+# !CLAUDE.md
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
